@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Square from "./Square";
 import type { Cord, SquareValue } from "../@types/square";
 import { BlackMoves, WhiteMoves } from "../services/moves";
+import MoveAudio from "../assets/audio/move-self.mp3"
 
 const Board = () => {
   const [board, setBoard] = useState(Array(8).fill(Array(8).fill(null)))
@@ -38,6 +39,7 @@ const Board = () => {
     const selectedValue: SquareValue = selected ? board[selected?.[0]][selected?.[1]] : null
 
     const move = (value: SquareValue) => {
+      const audio = new Audio(MoveAudio)
       const newBoard = board.map((row, rowIdx) => {
         const newRow = row.map((col: SquareValue, colIdx: number) => {
           if (selected?.[0] === rowIdx && selected?.[1] === colIdx) {
@@ -55,6 +57,7 @@ const Board = () => {
       })
 
       setBoard(newBoard)
+      audio.play()
       setSelected(null)
     }
 
