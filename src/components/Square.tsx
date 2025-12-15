@@ -82,7 +82,7 @@ const Square = ({ color, col, row, value, isSelected, onClick }: SquareProps) =>
         alt={value || ""}
         className="object-contain"
         style={whiteOutline}
-        draggable='false' /> : ""}
+        draggable='false' /> : null}
     </div>
   )
 }
