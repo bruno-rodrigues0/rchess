@@ -1,8 +1,10 @@
-import { useEffect, useState, type FunctionComponent } from "react";
+import { useEffect, useState } from "react";
+import { type SquareValue } from "../@types/square";
 import Square from "./Square";
 
-const Board: FunctionComponent = () => {
+const Board = () => {
   const [board, setBoard] = useState(Array(8).fill(Array(8).fill(null)))
+  const [selected, setSelected] = useState<[number, number] | null>(null)
 
   useEffect(() => {
     const newBoard = board.map((row, rowIdx) => {
@@ -29,6 +31,15 @@ const Board: FunctionComponent = () => {
     setBoard(newBoard)
   }, [])
 
+  const handleSquareClick = (square: [number, number]) => {
+    if (selected == square) {
+      setSelected(null)
+    } else {
+      setSelected(square)
+      console.log(selected);
+    }
+  }
+
   return (
     <div>
       <div id='deathsw'></div>
@@ -43,7 +54,10 @@ const Board: FunctionComponent = () => {
                     value={square}
                     col={colIdx}
                     row={rowIdx}
-                    key={colIdx} />
+                    key={colIdx}
+                    isSelected={rowIdx === selected?.[0] && colIdx === selected?.[1]}
+                    onClick={handleSquareClick}
+                  />
                 )
               })}
             </div>

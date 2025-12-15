@@ -1,6 +1,6 @@
 import Board from "./components/Board"
 
-function Template() {
+function App() {
 
   return (
     <div className="w-screen h-screen bg-neutral-800 flex justify-center items-center">
@@ -9,4 +9,4 @@ function Template() {
   )
 }
 
-export default Template
+export default App
