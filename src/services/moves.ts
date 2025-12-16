@@ -7,8 +7,15 @@ abstract class Moves {
   }
 
   static knight = (pos: Cord, target: Cord): boolean => {
-    console.log(pos, target)
-    return true
+    const canMove = (() => {
+      return (
+        (target[0] === pos[0] + 2 && (target[1] === pos[1] + 1 || target[1] === pos[1] - 1))
+        || (target[0] === pos[0] - 2 && (target[1] === pos[1] + 1 || target[1] === pos[1] - 1))
+        || (target[1] === pos[1] - 2 && (target[0] === pos[0] + 1 || target[0] === pos[0] - 1))
+        || (target[1] === pos[1] + 2 && (target[0] === pos[0] + 1 || target[0] === pos[0] - 1))
+      )
+    })()
+    return canMove
   }
 
   static bishop = (pos: Cord, target: Cord): boolean => {
@@ -17,8 +24,12 @@ abstract class Moves {
   }
 
   static king = (pos: Cord, target: Cord): boolean => {
-    console.log(pos, target)
-    return true
+    const canMove = (() => {
+      return (
+        ((target[0] <= pos[0] + 1 && target[0] >= pos[0] - 1) && (target[1] <= pos[1] + 1 && target[1] >= pos[1] - 1))
+      )
+    })()
+    return canMove
   }
 
   static queen = (pos: Cord, target: Cord): boolean => {
@@ -30,8 +41,15 @@ abstract class Moves {
 export abstract class WhiteMoves extends Moves {
 
   static pawn = (pos: Cord, target: Cord) => {
-    console.log(pos, target)
-    return true
+    const canMove = (() => {
+      return (
+        (pos[0] === 6 && (target[0] === pos[0] - 1 || target[0] === pos[0] - 2) && target[1] === pos[1])
+        || (pos[1] === target[1]) && ((target[0] === pos[0] - 1) && target[1] === pos[1])
+        || (pos[1] !== target[1] && false)
+      )
+    })()
+
+    return canMove
   }
 
   static rook = super.rook
@@ -45,8 +63,15 @@ export abstract class WhiteMoves extends Moves {
 export abstract class BlackMoves extends Moves {
 
   static pawn = (pos: Cord, target: Cord) => {
-    console.log(pos, target)
-    return true
+    const canMove = (() => {
+      return (
+        (pos[0] === 1 && (target[0] === pos[0] + 1 || target[0] === pos[0] + 2) && target[1] === pos[1])
+        || (pos[1] === target[1]) && ((target[0] === pos[0] + 1) && target[1] === pos[1])
+        || (pos[1] !== target[1] && false)
+      )
+    })()
+
+    return canMove
   }
 
   static rook = super.rook

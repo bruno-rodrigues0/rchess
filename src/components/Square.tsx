@@ -76,7 +76,7 @@ const Square = ({ color, col, row, value, isSelected, onClick }: SquareProps) =>
   }, [value])
 
   return (
-    <div className={`${bgClass} w-[100px] h-[100px]`} onClick={() => onClick([row, col])}>
+    <div className={`${bgClass} w-[11vw] h-[11vw] md:w-[6vw] md:h-[6vw]`} onClick={() => onClick([row, col])}>
       {piece !== null ? <img
         src={piece}
         alt={value || ""}

@@ -58,6 +58,7 @@ const Board = () => {
 
       setBoard(newBoard)
       audio.play()
+      setIsWhiteTurn(prev => !prev)
       setSelected(null)
     }
 
@@ -134,11 +135,9 @@ const Board = () => {
     } else {
       if (clickedSquareValue[0] === 'w' && isWhiteTurn) {
         setSelected(square)
-        setIsWhiteTurn((prev: boolean) => !prev)
 
       } else if (clickedSquareValue[0] === 'b' && !isWhiteTurn) {
         setSelected(square)
-        setIsWhiteTurn((prev: boolean) => !prev)
       }
     }
   }
